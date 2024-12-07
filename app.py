@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, Response, request  # type: ignore
+from flask import Flask, jsonify, request  # type: ignore
 from database import init_db, db
 from repository import LivroRepos
 
@@ -8,13 +8,20 @@ livroRepos = LivroRepos()
 
 @app.route('/')
 def index():
-    return 'Hello!'
+    return 'Hello! Bem-vindo.'
 
 @app.route('/livros', methods=['GET'])
 def livros():
     livros = livroRepos.all_livros()
     print(livros)
-    return jsonify([livro.toJson() for livro in livros]), Response()
+    return jsonify([livro.toJson() for livro in livros])
+
+@app.route('/livros/criar', methods=['POST'])
+def criar():
+    titulo = request.json.get('titulo')
+    livros = livroRepos.criar(titulo)
+    print(livros)
+    return jsonify(livros.toJson())
 
 if __name__ == "__main__":
     init_db(app)
@@ -23,9 +30,9 @@ if __name__ == "__main__":
 
 
 
-
 # Operações - marcar quando funcionar corretamente: 
-# [] cadastrar ; [] excluir ; [] editar ; []consultar ; [] exibir. <- Tudo em DAO?
+# [] cadastrar ; [] excluir ; [] editar ; [x]consultar todos ; 
+# [] consulta específica (título, autor, categoria ou ISBN) ; [x] exibir. <- Tudo em DAO?
 # Adicionar...
 # [] Blueprint ; [] JSON ; [] Sessions
 

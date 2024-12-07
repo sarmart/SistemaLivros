@@ -6,3 +6,6 @@ class LivroRepos:
 
     def all_livros(self):
         return self.livroDao.all_livros()
+    
+    def criar(self, titulo):
+        return self.livroDao.criar(titulo)

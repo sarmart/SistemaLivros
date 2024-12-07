@@ -5,3 +5,9 @@ class Categoria(db.Model):
     nome = db.Column(db.String(50), nullable=False)
     
     livros = db.relationship('Livro', back_populates='categoria')
+
+    def toJson(self):
+        return {
+            "id": self.id,
+            "nome": self.nome
+        }

@@ -3,9 +3,10 @@ from model import Livro, db
 class LivroDao:
     @staticmethod
     # app.route('/livros', methods['GET'])
-    
+
     def all_livros(): # Consultar todos os livros
-        return Livro.query.all()
+        l = Livro.query.all()
+        return l
 
     @staticmethod
     def src_livros_titulo(titulo): # Pesquisar por titulo
@@ -16,5 +17,9 @@ class LivroDao:
         pass
 
     @staticmethod
-    def criar(livro):
-        pass
+    def criar(titulo):
+        # add all e commit
+        livro = Livro(titulo=titulo)
+        db.session.add(livro)
+        db.session.commit()
+        return livro

@@ -7,3 +7,11 @@ class Autor(db.Model):
     nacionalidade = db.Column(db.String(50), nullable=False)
     
     livros = db.relationship('Livro', back_populates='autor')
+
+    def toJson(self):
+        return {
+            "id": self.id,
+            "nome": self.nome,
+            "data_nascimento": self.data_nascimento,
+            "nacionalidade": self.nacionalidade
+        }
