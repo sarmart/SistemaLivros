@@ -19,7 +19,11 @@ def livros():
 @app.route('/livros/criar', methods=['POST'])
 def criar():
     titulo = request.json.get('titulo')
-    livros = livroRepos.criar(titulo)
+    isbn = request.json.get('isbn')
+    data_publicacao = request.json.get('data_publicacao')
+    numero_paginas = request.json.get('numero_paginas')
+    # autor = request.json.get('autor')
+    livros = livroRepos.criar(titulo, isbn, data_publicacao, numero_paginas)
     print(livros)
     return jsonify(livros.toJson())
 
