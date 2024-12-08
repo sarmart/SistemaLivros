@@ -10,15 +10,7 @@ class LivroDao:
         return l
 
     @staticmethod
-    def src_livros_titulo(titulo): # Pesquisar por titulo
-        pass
-
-    @staticmethod
-    def src_livros_isbn(isbn): # Pesquisa por isbn
-        pass
-
-    @staticmethod
-    def criar(titulo, isbn, data_publicacao, numero_paginas, autor):
+    def criar(titulo, isbn, data_publicacao, numero_paginas):
         data_publicacao_date = datetime.strptime(data_publicacao, "%Y-%m-%d").date()
         # add all e commit
 
@@ -26,3 +18,19 @@ class LivroDao:
         db.session.add(livro)
         db.session.commit()
         return livro
+    
+    @staticmethod
+    def excluir(id):
+        livro = Livro.query.get(id)
+        if livro:
+            db.session.delete(livro)
+            db.session.commit()
+        return livro
+
+    @staticmethod
+    def src_livros_titulo(titulo): # Pesquisar por titulo
+        pass
+
+    @staticmethod
+    def src_livros_isbn(isbn): # Pesquisa por isbn
+        pass

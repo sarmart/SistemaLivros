@@ -27,6 +27,14 @@ def criar():
     print(livros)
     return jsonify(livros.toJson())
 
+@app.route('/livros/excluir/<int:livro_id>', methods=['DELETE'])
+def excluir(livro_id):
+    livro_exc = livroRepos.excluir(livro_id)
+    if livro_exc:
+        return jsonify({'message': 'Excluido com sucesso'}), 200
+    return jsonify({'message':'Não encontrado.'}), 404
+
+
 if __name__ == "__main__":
     init_db(app)
     app.run(debug = True)
@@ -45,7 +53,7 @@ if __name__ == "__main__":
 # (II) Tabelas [x]
 # (III) DAO/Repositório []
 # (IV) Rotas []
-# (V) Teste [] <- tentar mexer no postman dnv
+# (V) Teste [] 
 # (VI) View []
 
 # app.route('/livros', methods['GET'])

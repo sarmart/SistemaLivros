@@ -9,3 +9,6 @@ class LivroRepos:
     
     def criar(self, titulo, isbn, data_publicacao, numero_paginas): #autor
         return self.livroDao.criar(titulo, isbn, data_publicacao, numero_paginas) #autor
+    
+    def excluir(self, livro_id):
+        return self.livroDao.excluir(livro_id)
