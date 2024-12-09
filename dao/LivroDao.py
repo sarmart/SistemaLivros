@@ -36,7 +36,8 @@ class LivroDao:
 
     @staticmethod
     def src_livros_titulo(titulo): # Pesquisar por titulo
-        pass
+        livro = Livro.query.filter(titulo).all()
+        return livro
 
     @staticmethod
     def src_livros_isbn(isbn): # Pesquisa por isbn
