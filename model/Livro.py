@@ -19,6 +19,6 @@ class Livro(db.Model):
             "isbn": self.isbn,
             "data_publicacao": self.data_publicacao,
             "numero_paginas": self.numero_paginas,
-            "autor": self.autor,
+            "autor": self.autor.toJson() if self.autor else None,
             "categoria": self.categoria
         }

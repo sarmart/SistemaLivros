@@ -10,11 +10,18 @@ class LivroDao:
         return l
 
     @staticmethod
-    def criar(titulo, isbn, data_publicacao, numero_paginas):
+    def criar(titulo, isbn, data_publicacao, numero_paginas, autor):
         data_publicacao_date = datetime.strptime(data_publicacao, "%Y-%m-%d").date()
         # add all e commit
+        
+        #tentar diminuir aqui transformando em func em Autor.
+        autor =  Autor.query.filter(Autor.nome == autor).first() #verifica se existe...
+        if autor is None:
+            autor = Autor(nome = autor)
+            db.session.add(autor)
+            db.session.commit()
 
-        livro = Livro(titulo=titulo, isbn=isbn, data_publicacao=data_publicacao_date, numero_paginas=numero_paginas) #autor=autor
+        livro = Livro(titulo=titulo, isbn=isbn, data_publicacao=data_publicacao_date, numero_paginas=numero_paginas, autor=autor)
         db.session.add(livro)
         db.session.commit()
         return livro

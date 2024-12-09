@@ -22,8 +22,8 @@ def criar():
     isbn = request.json.get('isbn')
     data_publicacao = request.json.get('data_publicacao')
     numero_paginas = request.json.get('numero_paginas')
-    # autor = request.json.get('autor')
-    livros = livroRepos.criar(titulo, isbn, data_publicacao, numero_paginas)
+    autor = request.json.get('autor')
+    livros = livroRepos.criar(titulo, isbn, data_publicacao, numero_paginas, autor)
     print(livros)
     return jsonify(livros.toJson())
 
